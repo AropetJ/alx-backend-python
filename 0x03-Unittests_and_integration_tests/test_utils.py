@@ -23,12 +23,6 @@ class TestAccessNestedMap(unittest.TestCase):
         This method tests the `access_nested_map` function.
         It uses the `parameterized.expand` decorator to run the test multiple times,
         each time with different parameters.
-        Parameters:
-        nested_map (Dict): The nested map to access.
-        path (Tuple[str]): The path to the value in the nested map.
-        expected (Union[Dict, int]): The expected result of the function.
-        Returns:
-        None
         """
         self.assertEqual(access_nested_map(nested_map, path), expected)
 
@@ -41,12 +35,6 @@ class TestAccessNestedMap(unittest.TestCase):
         This method tests the `access_nested_map` function for exceptions.
         It uses the `parameterized.expand` decorator to run the test multiple
         times, each time with different parameters.
-        Parameters:
-        nested_map (Dict): The nested map to access.
-        path (Tuple[str]): The path to the value in the nested map.
-        exception (Exception): The exception that is expected to be raised.
-        Returns:
-        None
         """
         with self.assertRaises(exception):
             access_nested_map(nested_map, path)
@@ -67,11 +55,6 @@ class TestGetJson(unittest.TestCase):
         This method tests the `get_json` function.
         It uses the `parameterized.expand` decorator to run the test multiple
         times, each time with different parameters.
-        Parameters:
-        test_url (str): The URL to get the JSON from.
-        test_payload (Dict): The expected JSON payload.
-        Returns:
-        None
         """
         attrs = {'json.return_value': test_payload}
         with patch("requests.get", return_value=Mock(**attrs)) as req_get:
@@ -80,19 +63,9 @@ class TestGetJson(unittest.TestCase):
 
 
 class TestMemoize(unittest.TestCase):
-    """
-    Test case for the memoize decorator.
-    This test case verifies the functionality of the memoize decorator
-    by testing the memoization of a property in the TestClass.
-    """
-
+    """Tests case for the memoize decorator"""
     def test_memoize(self) -> None:
-        """
-        Test the memoization of a property.
-        This test method creates an instance of TestClass and verifies
-        that the memoization of the 'a_property' method works correctly.
-        It also checks that the method is only called once.
-        """
+        """Tests the memoization of a property."""
         class TestClass:
             def a_method(self):
                 return 42
