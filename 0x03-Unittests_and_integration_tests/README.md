@@ -44,9 +44,9 @@ At the end of this project, you are expected to be able to [explain to anyone](h
 - All your functions and coroutines must be type-annotated.
 
 ## Required Files
-utils.py (or [download](https://intranet-projects-files.s3.amazonaws.com/webstack/utils.py))
+- utils.py (or [download](https://intranet-projects-files.s3.amazonaws.com/webstack/utils.py))
 Click to show/hide file contents
-client.py (or [download](https://intranet-projects-files.s3.amazonaws.com/webstack/client.py))
+- client.py (or [download](https://intranet-projects-files.s3.amazonaws.com/webstack/client.py))
 Click to show/hide file contents
-fixtures.py (or [download](https://intranet-projects-files.s3.amazonaws.com/webstack/fixtures.py))
+- fixtures.py (or [download](https://intranet-projects-files.s3.amazonaws.com/webstack/fixtures.py))
 Click to show/hide file contents
