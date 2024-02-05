@@ -1,16 +1,12 @@
 #!/usr/bin/env python3
-"""A module for testing the utils module.
+"""A python3 module for testing the utils module.
 """
 import unittest
+from parameterized import parameterized
 from typing import Dict, Tuple, Union
 from unittest.mock import patch, Mock
-from parameterized import parameterized
 
-from utils import (
-    access_nested_map,
-    get_json,
-    memoize,
-)
+from utils import (access_nested_map,memoize,get_json)
 
 
 class TestAccessNestedMap(unittest.TestCase):
@@ -18,17 +14,11 @@ class TestAccessNestedMap(unittest.TestCase):
     This class contains unit tests for the function `access_nested_map`.
     It inherits from the `unittest.TestCase` class.
     """
-    @parameterized.expand([
-        ({"a": 1}, ("a",), 1),
-        ({"a": {"b": 2}}, ("a",), {"b": 2}),
-        ({"a": {"b": 2}}, ("a", "b"), 2),
-    ])
-    def test_access_nested_map(
-            self,
-            nested_map: Dict,
-            path: Tuple[str],
-            expected: Union[Dict, int],
-            ) -> None:
+    @parameterized.expand([({"a": 1}, ("a",), 1),
+                           ({"a": {"b": 2}}, ("a",), {"b": 2}),
+                           ({"a": {"b": 2}}, ("a", "b"), 2)])
+    def test_access_nested_map(self, nested_map: Dict, path: Tuple[str],
+                               expected: Union[Dict, int]) -> None:
         """
         This method tests the `access_nested_map` function.
         It uses the `parameterized.expand` decorator to run the test multiple times,
@@ -42,20 +32,15 @@ class TestAccessNestedMap(unittest.TestCase):
         """
         self.assertEqual(access_nested_map(nested_map, path), expected)
 
-    @parameterized.expand([
-        ({}, ("a",), KeyError),
-        ({"a": 1}, ("a", "b"), KeyError),
-    ])
-    def test_access_nested_map_exception(
-            self,
-            nested_map: Dict,
-            path: Tuple[str],
-            exception: Exception,
-            ) -> None:
+    @parameterized.expand([({}, ("a",), KeyError),({"a": 1}, ("a", "b"),
+                                                   KeyError)])
+    def test_access_nested_map_exception(self, nested_map: Dict,
+                                         path: Tuple[str],
+                                         exception: Exception) -> None:
         """
         This method tests the `access_nested_map` function for exceptions.
-        It uses the `parameterized.expand` decorator to run the test multiple times,
-        each time with different parameters.
+        It uses the `parameterized.expand` decorator to run the test multiple
+        times, each time with different parameters.
         Parameters:
         nested_map (Dict): The nested map to access.
         path (Tuple[str]): The path to the value in the nested map.
@@ -68,17 +53,26 @@ class TestAccessNestedMap(unittest.TestCase):
 
 
 class TestGetJson(unittest.TestCase):
-    """Tests the `get_json` function."""
+    """
+    This class contains unit tests for the function `get_json`.
+    It inherits from the `unittest.TestCase` class.
+    """
     @parameterized.expand([
         ("http://example.com", {"payload": True}),
         ("http://holberton.io", {"payload": False}),
     ])
-    def test_get_json(
-            self,
-            test_url: str,
-            test_payload: Dict,
-            ) -> None:
-        """Tests `get_json`'s output."""
+    def test_get_json(self, test_url: str,
+                      test_payload: Dict) -> None:
+        """
+        This method tests the `get_json` function.
+        It uses the `parameterized.expand` decorator to run the test multiple
+        times, each time with different parameters.
+        Parameters:
+        test_url (str): The URL to get the JSON from.
+        test_payload (Dict): The expected JSON payload.
+        Returns:
+        None
+        """
         attrs = {'json.return_value': test_payload}
         with patch("requests.get", return_value=Mock(**attrs)) as req_get:
             self.assertEqual(get_json(test_url), test_payload)
