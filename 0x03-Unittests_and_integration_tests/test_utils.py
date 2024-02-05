@@ -14,7 +14,10 @@ from utils import (
 
 
 class TestAccessNestedMap(unittest.TestCase):
-    """Tests the `access_nested_map` function."""
+    """
+    This class contains unit tests for the function `access_nested_map`.
+    It inherits from the `unittest.TestCase` class.
+    """
     @parameterized.expand([
         ({"a": 1}, ("a",), 1),
         ({"a": {"b": 2}}, ("a",), {"b": 2}),
@@ -26,7 +29,17 @@ class TestAccessNestedMap(unittest.TestCase):
             path: Tuple[str],
             expected: Union[Dict, int],
             ) -> None:
-        """Tests `access_nested_map`'s output."""
+        """
+        This method tests the `access_nested_map` function.
+        It uses the `parameterized.expand` decorator to run the test multiple times,
+        each time with different parameters.
+        Parameters:
+        nested_map (Dict): The nested map to access.
+        path (Tuple[str]): The path to the value in the nested map.
+        expected (Union[Dict, int]): The expected result of the function.
+        Returns:
+        None
+        """
         self.assertEqual(access_nested_map(nested_map, path), expected)
 
     @parameterized.expand([
