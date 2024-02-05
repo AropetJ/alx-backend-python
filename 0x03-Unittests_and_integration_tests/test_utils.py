@@ -52,7 +52,17 @@ class TestAccessNestedMap(unittest.TestCase):
             path: Tuple[str],
             exception: Exception,
             ) -> None:
-        """Tests `access_nested_map`'s exception raising."""
+        """
+        This method tests the `access_nested_map` function for exceptions.
+        It uses the `parameterized.expand` decorator to run the test multiple times,
+        each time with different parameters.
+        Parameters:
+        nested_map (Dict): The nested map to access.
+        path (Tuple[str]): The path to the value in the nested map.
+        exception (Exception): The exception that is expected to be raised.
+        Returns:
+        None
+        """
         with self.assertRaises(exception):
             access_nested_map(nested_map, path)
 
